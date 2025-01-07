@@ -12,7 +12,6 @@ import React, { useState } from 'react';
 import { uploadFileUsingPost } from '@/services/excuse-backend/fileController';
 import { updateUserUsingPost } from '@/services/excuse-backend/userController';
 import { userRole, UserRoleEnum } from '@/enums/UserRoleEnum';
-import { TagTreeSelect } from '@/components';
 import { FileUploadBiz } from '@/enums/FileUploadBizEnum';
 
 interface Props {
@@ -107,7 +106,6 @@ const UpdateUserModal: React.FC<Props> = (props) => {
           ...values,
           id: oldData?.id,
           userAvatar,
-          tags: Array.isArray(values.tags) ? values.tags : JSON.parse(values.tags as any),
         });
         if (success) {
           onSubmit?.(values);
@@ -150,11 +148,6 @@ const UpdateUserModal: React.FC<Props> = (props) => {
           <Select.Option value={UserRoleEnum.BAN}>{userRole[UserRoleEnum.BAN].text}</Select.Option>
         </Select>
       </ProFormSelect>
-      <TagTreeSelect
-        name={'tags'}
-        label={'标签'}
-        initialValue={oldData?.tags ? JSON.parse(oldData?.tags) : []}
-      />
     </ModalForm>
   );
 };

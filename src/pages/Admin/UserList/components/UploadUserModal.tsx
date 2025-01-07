@@ -1,6 +1,6 @@
 import '@umijs/max';
 import { message } from 'antd';
-import React, { useState } from 'react';
+import React from 'react';
 import { ModalForm, ProForm, ProFormUploadDragger } from '@ant-design/pro-components';
 import { importUserDataByExcelUsingPost } from '@/services/excuse-backend/excelController';
 

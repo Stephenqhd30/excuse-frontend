@@ -11,7 +11,6 @@ import { AntDesignOutlined } from '@ant-design/icons';
 import { updateMyUserUsingPost } from '@/services/excuse-backend/userController';
 import { uploadFileUsingPost } from '@/services/excuse-backend/fileController';
 import { FileUploadBiz } from '@/enums/FileUploadBizEnum';
-import { TagTreeSelect } from '@/components';
 
 interface BaseViewProps {
   user: API.UserVO;
@@ -88,10 +87,10 @@ const BaseView: React.FC<BaseViewProps> = (props) => {
   return (
     <ProCard
       title="更新个人基本信息"
-      extra={isMobile ? null : new Date().toLocaleDateString()}
+      autoFocus={false}
       headerBordered
-      bodyStyle={{ padding: isMobile ? '4px' : '24px' }}
-      headStyle={{ padding: isMobile ? '4px' : '24px' }}
+      bodyStyle={{ padding: isMobile ? 4 : 16 }}
+      headStyle={{ padding: isMobile ? 4 : 16 }}
     >
       <ProForm
         layout="vertical"
@@ -133,7 +132,6 @@ const BaseView: React.FC<BaseViewProps> = (props) => {
           }}
           name="pic"
         />
-        <TagTreeSelect initialValue={user?.tags} name={'tags'} label={"标签选择"} />
       </ProForm>
     </ProCard>
   );

@@ -12,7 +12,6 @@ import React, { useState } from 'react';
 import { addUserUsingPost } from '@/services/excuse-backend/userController';
 import { uploadFileUsingPost } from '@/services/excuse-backend/fileController';
 import { userRole, UserRoleEnum } from '@/enums/UserRoleEnum';
-import { TagTreeSelect } from '@/components';
 import { FileUploadBiz } from '@/enums/FileUploadBizEnum';
 
 interface Props {
@@ -144,7 +143,6 @@ const CreateUserModal: React.FC<Props> = (props) => {
           <Select.Option value={UserRoleEnum.BAN}>{userRole[UserRoleEnum.BAN].text}</Select.Option>
         </Select>
       </ProFormSelect>
-      <TagTreeSelect name={'tags'} label={"标签"}/>
     </ModalForm>
   );
 };

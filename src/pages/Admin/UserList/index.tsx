@@ -12,8 +12,6 @@ import {
   UpdateUserModal,
   UploadUserModal,
 } from '@/pages/Admin/UserList/components';
-import { TagTreeSelect } from '@/components';
-import { TAG_EMPTY } from '@/constants';
 import { downloadUsingGet } from '@/services/excuse-backend/excelController';
 
 /**
@@ -131,19 +129,6 @@ const UserList: React.FC = () => {
         const role = userRole[record.userRole as UserRoleEnum];
         return <Tag color={role.color}>{role.text}</Tag>;
       },
-    },
-    {
-      title: '用户标签',
-      dataIndex: 'tags',
-      valueType: 'text',
-      render: (_, record) => {
-        if (record.tags) {
-          const tagList = JSON.parse(record.tags as string);
-          return tagList.map((tag) => <Tag key={tag} color={'blue'}>{tag}</Tag>);
-        }
-        return <Tag>{TAG_EMPTY}</Tag>;
-      },
-      renderFormItem: () => <TagTreeSelect name={'tags'}/>,
     },
     {
       title: '创建时间',
