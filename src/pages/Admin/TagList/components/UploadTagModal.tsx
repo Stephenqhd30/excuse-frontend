@@ -1,7 +1,7 @@
 import { message } from 'antd';
 import React from 'react';
 import { ModalForm, ProForm, ProFormUploadDragger } from '@ant-design/pro-components';
-import { importUserByExcelUsingPost } from '@/services/excuse-backend/excelController';
+import { importTagByExcelUsingPost } from '@/services/excuse-backend/excelController';
 
 interface Props {
   onCancel: () => void;
@@ -19,7 +19,7 @@ const UploadUserModal: React.FC<Props> = (props) => {
   const [form] = ProForm.useForm();
   return (
     <ModalForm
-      title={'批量导入用户信息'}
+      title={'批量导入标签信息'}
       open={visible}
       form={form}
       modalProps={{
@@ -31,7 +31,7 @@ const UploadUserModal: React.FC<Props> = (props) => {
       onFinish={async (values: any) => {
         const hide = message.loading('正在上传中，请稍候...');
         try {
-          const res = await importUserByExcelUsingPost({
+          const res = await importTagByExcelUsingPost({
             file: values.file[0].originFileObj,
           });
           if (res.code === 0 && res?.data?.errorRecords.length === 0) {

@@ -1,4 +1,4 @@
-import { PlusOutlined } from '@ant-design/icons';
+import { DownloadOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import { Button, message, Popconfirm, Select, Space, Typography } from 'antd';
 import React, { useRef, useState } from 'react';
@@ -7,8 +7,14 @@ import {
   deleteTagUsingPost,
   listTagByPageUsingPost,
 } from '@/services/excuse-backend/tagController';
-import { CreateTagModal, UpdateTagModal } from '@/pages/Admin/TagList/components';
-import {tagStatus, TagStatusEnum} from '@/enums/TagStatusEnum';
+import {
+  BatchTagModal,
+  CreateTagModal,
+  UpdateTagModal,
+  UploadTagModal,
+} from '@/pages/Admin/TagList/components';
+import { tagStatus, TagStatusEnum } from '@/enums/TagStatusEnum';
+import { downloadTagUsingGet } from '@/services/excuse-backend/excelController';
 
 /**
  * 删除节点
@@ -43,9 +49,39 @@ const TagList: React.FC = () => {
   const [createModalVisible, setCreateModalVisible] = useState<boolean>(false);
   // 更新窗口的Modal框
   const [updateModalVisible, setUpdateModalVisible] = useState<boolean>(false);
+  // 上传窗口的Modal框
+  const [uploadModalVisible, setUploadModalVisible] = useState<boolean>(false);
   const actionRef = useRef<ActionType>();
-  // 当前用户的所点击的数据
+  // 当前标签的所点击的数据
   const [currentRow, setCurrentRow] = useState<API.Tag>();
+  // 选中行数据
+  const [selectedRowKeys, setSelectedRowKeys] = useState<any[]>([]);
+  // 批量信息 Modal 框
+  const [batchModalVisible, setBatchModalVisible] = useState<boolean>(false);
+
+  /**
+   * 下载标签信息
+   */
+  const downloadTagInfo = async () => {
+    try {
+      const res = await downloadTagUsingGet({
+        responseType: 'blob',
+      });
+      // 创建 Blob 对象
+      // @ts-ignore
+      const url = window.URL.createObjectURL(new Blob([res]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', '标签信息.xlsx');
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      // 释放对象 URL
+      window.URL.revokeObjectURL(url);
+    } catch (error: any) {
+      message.error('导出失败: ' + error.message);
+    }
+  };
 
   /**
    * 表格列数据
@@ -122,7 +158,7 @@ const TagList: React.FC = () => {
           >
             修改
           </Typography.Link>
-          {/*删除表单用户的PopConfirm框*/}
+          {/*删除表单标签的PopConfirm框*/}
           <Popconfirm
             title="确定删除？"
             description="删除后将无法恢复?"
@@ -156,16 +192,55 @@ const TagList: React.FC = () => {
         search={{
           labelWidth: 120,
         }}
+        rowSelection={{
+          selectedRowKeys: selectedRowKeys,
+          onChange: setSelectedRowKeys,
+        }}
+        tableAlertOptionRender={() => {
+          return (
+            <Space>
+              <Button
+                type="primary"
+                onClick={async () => {
+                  setBatchModalVisible(true);
+                }}
+              >
+                批量处理
+              </Button>
+            </Space>
+          );
+        }}
         toolBarRender={() => [
-          <Button
-            type="primary"
-            key="primary"
-            onClick={() => {
-              setCreateModalVisible(true);
-            }}
-          >
-            <PlusOutlined /> 新建
-          </Button>,
+          <Space key={'space'} wrap>
+            <Button
+              type="primary"
+              key="primary"
+              onClick={() => {
+                setCreateModalVisible(true);
+              }}
+              icon={<PlusOutlined />}
+            >
+              新建
+            </Button>
+            <Button
+              key={'upload'}
+              onClick={() => {
+                setUploadModalVisible(true);
+              }}
+              icon={<UploadOutlined />}
+            >
+              批量导入标签信息
+            </Button>
+            <Button
+              key={'export'}
+              onClick={async () => {
+                await downloadTagInfo();
+              }}
+              icon={<DownloadOutlined />}
+            >
+              导出标签信息
+            </Button>
+          </Space>,
         ]}
         request={async (params, sort, filter) => {
           const sortField = Object.keys(sort)?.[0];
@@ -214,6 +289,35 @@ const TagList: React.FC = () => {
           visible={updateModalVisible}
           columns={columns}
           oldData={currentRow}
+        />
+      )}
+      {/*上传标签信息的Modal框*/}
+      {uploadModalVisible && (
+        <UploadTagModal
+          onCancel={() => {
+            setUploadModalVisible(false);
+          }}
+          visible={uploadModalVisible}
+          onSubmit={async () => {
+            setUploadModalVisible(false);
+            actionRef.current?.reload();
+          }}
+        />
+      )}
+      {/*批量处理标签的Modal框*/}
+      {batchModalVisible && (
+        <BatchTagModal
+          onCancel={() => {
+            setBatchModalVisible(false);
+          }}
+          visible={batchModalVisible}
+          selectedRowKeys={selectedRowKeys}
+          onSubmit={async () => {
+            setBatchModalVisible(false);
+            setSelectedRowKeys([]);
+            setCurrentRow(undefined);
+            actionRef.current?.reload();
+          }}
         />
       )}
     </>

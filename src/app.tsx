@@ -25,7 +25,7 @@ export async function getInitialState(): Promise<InitialState> {
       if (res.code === 0) {
         initialState.currentUser = res.data as any;
         // 保存token信息到本地
-        localStorage.setItem('stephen-token', res?.data?.token || '');
+        localStorage.setItem('excuse-token', res?.data?.token || '');
       }
     }
   } catch (error: any) {}

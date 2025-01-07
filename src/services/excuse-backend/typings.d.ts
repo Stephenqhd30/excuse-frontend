@@ -375,6 +375,7 @@ declare namespace API {
 
   type TagUpdateRequest = {
     id?: number;
+    idList?: number[];
     isParent?: number;
     parentId?: number;
     tagName?: string;

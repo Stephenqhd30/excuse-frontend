@@ -6,7 +6,6 @@ import {
   ProFormTextArea,
   ProFormUploadDragger,
 } from '@ant-design/pro-components';
-import '@umijs/max';
 import { message, Select, UploadProps } from 'antd';
 import React, { useState } from 'react';
 import { addUserUsingPost } from '@/services/excuse-backend/userController';

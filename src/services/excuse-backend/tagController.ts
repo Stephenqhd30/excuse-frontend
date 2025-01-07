@@ -123,3 +123,18 @@ export async function updateTagUsingPost(
     ...(options || {}),
   });
 }
+
+/** updateTagByBatch POST /api/tag/update/batch */
+export async function updateTagByBatchUsingPost(
+  body: API.TagUpdateRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseBoolean_>('/api/tag/update/batch', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}

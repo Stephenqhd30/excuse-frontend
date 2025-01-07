@@ -12,7 +12,7 @@ import {
   UpdateUserModal,
   UploadUserModal,
 } from '@/pages/Admin/UserList/components';
-import { downloadUsingGet } from '@/services/excuse-backend/excelController';
+import { downloadUserUsingGet } from '@/services/excuse-backend/excelController';
 
 /**
  * 删除节点
@@ -54,11 +54,11 @@ const UserList: React.FC = () => {
   const [currentRow, setCurrentRow] = useState<API.User>();
 
   /**
-   * 现在用户信息
+   * 下载用户信息
    */
   const downloadUserInfo = async () => {
     try {
-      const res = await downloadUsingGet({
+      const res = await downloadUserUsingGet({
         responseType: 'blob',
       });
       // 创建 Blob 对象

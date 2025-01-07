@@ -1,5 +1,4 @@
 import { ProColumns, ProTable } from '@ant-design/pro-components';
-import '@umijs/max';
 import { message, Modal } from 'antd';
 import React from 'react';
 import { addTagUsingPost } from '@/services/excuse-backend/tagController';

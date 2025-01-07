@@ -24,7 +24,7 @@ export const requestConfig: RequestConfig = {
     (config: RequestOptions) => {
       // 拦截请求配置，进行个性化处理。
       // 每次登录之前都需要携带token信息
-      const token = localStorage.getItem('stephen-token');
+      const token = localStorage.getItem('excuse-token');
       if (token) {
         config.headers = {
           ...config.headers,
