@@ -255,6 +255,11 @@ declare namespace API {
     category?: string;
     introduction?: string;
     name?: string;
+    picFormat?: string;
+    picHeight?: number;
+    picScale?: number;
+    picSize?: number;
+    picWidth?: number;
     tags?: string[];
     url?: string;
   };
@@ -264,6 +269,11 @@ declare namespace API {
     id?: number;
     introduction?: string;
     name?: string;
+    picFormat?: string;
+    picHeight?: number;
+    picScale?: number;
+    picSize?: number;
+    picWidth?: number;
     tags?: string[];
     url?: string;
   };
@@ -303,6 +313,11 @@ declare namespace API {
     id?: number;
     introduction?: string;
     name?: string;
+    picFormat?: string;
+    picHeight?: number;
+    picScale?: number;
+    picSize?: number;
+    picWidth?: number;
     tags?: string[];
     url?: string;
   };

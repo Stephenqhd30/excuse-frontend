@@ -9,8 +9,8 @@ const Settings: ProLayoutProps & {
 } = {
   navTheme: 'light',
   colorPrimary: '#1890ff',
-  layout: 'mix',
-  contentWidth: 'Fluid',
+  layout: 'top',
+  contentWidth: 'Fixed',
   fixedHeader: true,
   fixSiderbar: true,
   splitMenus: false,
