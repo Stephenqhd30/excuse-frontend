@@ -15,6 +15,6 @@ export {
   AvatarName,
   TagTreeSelect,
   UserCard,
-  PictureDetailsCard,
   PictureCard,
+  PictureDetailsCard,
 };

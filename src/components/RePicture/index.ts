@@ -1,4 +1,4 @@
-import PictureDetailsCard from '@/components/RePicture/PictureDetailsCard';
 import PictureCard from '@/components/RePicture/PictureCard';
+import PictureDetailsCard from '@/components/RePicture/PictureDetailsCard';
 
-export { PictureDetailsCard, PictureCard };
+export { PictureCard, PictureDetailsCard };

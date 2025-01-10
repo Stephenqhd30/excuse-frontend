@@ -35,18 +35,20 @@ const PictureCard: React.FC<Props> = (props) => {
         />
       }
     >
-      <Card.Meta
-        title={<a>{picture?.name}</a>}
-        description={
-          <Typography.Paragraph
-            ellipsis={{
-              rows: 2,
-            }}
-          >
-            {picture.introduction}
-          </Typography.Paragraph>
-        }
-      />
+      <div onClick={() => window.open(`/picture/${picture?.id}`, '_blank')}>
+        <Card.Meta
+          title={<a>{picture?.name}</a>}
+          description={
+            <Typography.Paragraph
+              ellipsis={{
+                rows: 2,
+              }}
+            >
+              {picture.introduction}
+            </Typography.Paragraph>
+          }
+        />
+      </div>
       <Row>
         <Col span={22}>
           <Typography.Text type="secondary">

@@ -1,6 +1,7 @@
 export default [
   { path: '/', redirect: '/welcome' },
   { path: '/welcome', name: '主页', icon: 'smile', component: './Welcome' },
+  { path: '/picture/:id', name: '图片详细', component: './Picture', hideInMenu: true },
   {
     path: '/admin',
     name: '管理页',
