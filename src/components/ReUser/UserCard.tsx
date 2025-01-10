@@ -78,28 +78,6 @@ const UserCard: React.FC<Props> = (props) => {
             },
           }}
         />
-        <StatisticCard
-          bodyStyle={{ padding: 0 }}
-          headStyle={{ padding: 0 }}
-          statistic={{
-            valueRender: () => {
-              return user.tags?.map((tag) => {
-                return (
-                  <Tag
-                    style={{
-                      fontSize: 14,
-                    }}
-                    color={'magenta'}
-                    bordered={false}
-                    key={tag}
-                  >
-                    {tag}
-                  </Tag>
-                );
-              });
-            },
-          }}
-        />
       </StatisticCard.Group>
     </ProCard>
   );
