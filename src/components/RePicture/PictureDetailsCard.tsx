@@ -91,7 +91,7 @@ const PictureDetailsCard: React.FC<Props> = (props) => {
           title: '创建用户',
           dataIndex: 'userId',
           valueType: 'text',
-          render: () => <div>{picture?.userVO?.userName}</div>,
+          render: () => <div>{picture?.userVO?.userName || picture.userId}</div>,
         },
       ]}
     />

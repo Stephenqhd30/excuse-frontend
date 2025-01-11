@@ -15,6 +15,16 @@ export default [
     ],
   },
   {
+    path: '/review',
+    name: '审核页',
+    icon: 'MenuUnfoldOutlined',
+    access: 'canAdmin',
+    routes: [
+      { path: '/review', redirect: '/review/picture' },
+      { name: '图片审核', path: '/review/picture', component: './Review/Picture' },
+    ],
+  },
+  {
     path: '/account',
     name: '个人页',
     icon: 'user',

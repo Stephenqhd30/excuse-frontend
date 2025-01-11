@@ -1,8 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Grid, Image, Row } from 'antd';
-import {
-  PageContainer,
-} from '@ant-design/pro-components';
+import { PageContainer } from '@ant-design/pro-components';
 import { useParams } from '@umijs/max';
 import { getPictureVoByIdUsingGet } from '@/services/excuse-backend/pictureController';
 import { PictureDetailsCard } from '@/components';

@@ -3,8 +3,7 @@ import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import { Button, message, Popconfirm, Space, Tag, Typography } from 'antd';
 import React, { useRef, useState } from 'react';
 import {
-  deletePictureUsingPost,
-  listPictureVoByPageUsingPost,
+  deletePictureUsingPost, listPictureByPageUsingPost,
 } from '@/services/excuse-backend/pictureController';
 import { CreatePictureModal, UpdatePictureModal } from '@/pages/Admin/PictureList/components';
 import { TAG_EMPTY } from '@/constants';
@@ -80,9 +79,8 @@ const PictureList: React.FC = () => {
       dataIndex: 'introduction',
       valueType: 'textarea',
     },
-
     {
-      title: '用户标签',
+      title: '标签',
       dataIndex: 'tags',
       valueType: 'text',
       render: (_, record) => {
@@ -218,7 +216,7 @@ const PictureList: React.FC = () => {
         request={async (params, sort, filter) => {
           const sortField = Object.keys(sort)?.[0];
           const sortOrder = sort?.[sortField] ?? undefined;
-          const { data, code } = await listPictureVoByPageUsingPost({
+          const { data, code } = await listPictureByPageUsingPost({
             ...params,
             ...filter,
             sortField,

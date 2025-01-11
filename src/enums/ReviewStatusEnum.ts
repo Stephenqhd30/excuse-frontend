@@ -1,7 +1,7 @@
 /**
  * 用户角色枚举
  */
-export enum ReviewStatusEnum {
+export enum ReviewStatus {
   REVIEWING = 0,
   PASS = 1,
   REJECT = 2,
@@ -10,20 +10,20 @@ export enum ReviewStatusEnum {
 /**
  * 用户角色枚举
  */
-export const reviewStatus = {
-  [ReviewStatusEnum.REVIEWING]: {
+export const reviewStatusEnum = {
+  [ReviewStatus.REVIEWING]: {
     text: '审核中',
-    value: ReviewStatusEnum.REVIEWING,
+    value: ReviewStatus.REVIEWING,
     color: 'processing',
   },
-  [ReviewStatusEnum.PASS]: {
+  [ReviewStatus.PASS]: {
     text: '审核通过',
-    value: ReviewStatusEnum.PASS,
+    value: ReviewStatus.PASS,
     color: 'success',
   },
-  [ReviewStatusEnum.REJECT]: {
+  [ReviewStatus.REJECT]: {
     text: '拒绝',
-    value: ReviewStatusEnum.REJECT,
+    value: ReviewStatus.REJECT,
     color: 'error',
   },
 };

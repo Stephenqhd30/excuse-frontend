@@ -304,6 +304,7 @@ declare namespace API {
 
   type PictureReviewRequest = {
     id?: number;
+    idList?: number[];
     reviewMessage?: string;
     reviewStatus?: number;
   };

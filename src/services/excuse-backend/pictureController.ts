@@ -122,6 +122,21 @@ export async function doPictureReviewUsingPost(
   });
 }
 
+/** doPictureReviewByBatch POST /api/picture/review/batch */
+export async function doPictureReviewByBatchUsingPost(
+  body: API.PictureReviewRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseBoolean_>('/api/picture/review/batch', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
 /** updatePicture POST /api/picture/update */
 export async function updatePictureUsingPost(
   body: API.PictureUpdateRequest,

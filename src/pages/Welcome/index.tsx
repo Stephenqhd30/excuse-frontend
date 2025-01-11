@@ -6,6 +6,7 @@ import { PictureCard } from '@/components';
 
 /**
  * 主页
+ *
  * @constructor
  */
 const Welcome: React.FC = () => {
