@@ -1,5 +1,5 @@
 import { ProList } from '@ant-design/pro-components';
-import React from 'react';
+import React, {useState} from 'react';
 import { listPictureVoByPageUsingPost } from '@/services/excuse-backend/pictureController';
 import { PictureCard } from '@/components';
 
@@ -10,6 +10,13 @@ import { PictureCard } from '@/components';
  * @constructor
  */
 const Welcome: React.FC = () => {
+  // 图片 Modal 框
+  const [showPictureModal, setShowPictureModal] = useState<boolean>(false);
+  // 搜索参数状态
+  const [searchParams, setSearchParams] = useState<API.PictureQueryRequest>({
+    current: 1,
+    pageSize: 10,
+  });
   return (
     <>
       <ProList
@@ -17,6 +24,8 @@ const Welcome: React.FC = () => {
           defaultPageSize: 8,
           showSizeChanger: false,
           responsive: true,
+          current: searchParams.current,
+          onChange: (page) => setSearchParams((prev) => ({ ...prev, current: page })),
         }}
         rowKey={'id'}
         grid={{

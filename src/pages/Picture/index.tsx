@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Grid, Image, Row } from 'antd';
-import { PageContainer } from '@ant-design/pro-components';
+import { ProCard} from '@ant-design/pro-components';
 import { useParams } from '@umijs/max';
 import { getPictureVoByIdUsingGet } from '@/services/excuse-backend/pictureController';
 import { PictureDetailsCard } from '@/components';
@@ -15,6 +15,7 @@ const PicturePage: React.FC = () => {
   const scene = useBreakpoint();
   const isMobile = !scene.md;
   const [picture, setPicture] = useState<API.PictureVO>({});
+
 
   /**
    * 根据id获取图片信息
@@ -36,10 +37,10 @@ const PicturePage: React.FC = () => {
 
   useEffect(() => {
     loadData();
-  });
+  }, []);
 
   return (
-    <PageContainer title={false}>
+    <ProCard>
       <Row gutter={[16, 16]}>
         <Col span={isMobile ? 24 : 12}>
           <Image src={picture?.url} />
@@ -48,7 +49,7 @@ const PicturePage: React.FC = () => {
           <PictureDetailsCard picture={picture} />
         </Col>
       </Row>
-    </PageContainer>
+    </ProCard>
   );
 };
 

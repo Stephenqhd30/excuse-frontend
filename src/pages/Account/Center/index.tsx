@@ -1,6 +1,4 @@
 import React from 'react';
-import { PageContainer } from '@ant-design/pro-components';
-import { ACCOUNT_TITLE } from '@/constants';
 import { Col, Grid, Row } from 'antd';
 import { useModel } from '@@/exports';
 import { UserCard } from '@/components';
@@ -19,17 +17,17 @@ const AccountCenter: React.FC = () => {
   const isMobile = !scene.md;
 
   return (
-    <PageContainer
-      title={ACCOUNT_TITLE}
-      breadcrumb={undefined}
-    >
-      <Row gutter={[16, 16]}>
-        <Col span={isMobile ? 24 : 6}>
-          <UserCard user={currentUser ?? {}} />
-        </Col>
-        <Col span={isMobile ? 24 : 18}></Col>
-      </Row>
-    </PageContainer>
+   <>
+     <Row gutter={[16, 16]}>
+       <Col span={isMobile ? 24 : 6}>
+       </Col>
+       <Col span={isMobile ? 24 : 18}>
+         <UserCard user={currentUser ?? {}} />
+       </Col>
+     </Row>
+   </>
+
+
   );
 };
 

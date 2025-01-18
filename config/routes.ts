@@ -26,7 +26,7 @@ export default [
   },
   {
     path: '/account',
-    name: '个人页',
+    name: '个人中心',
     icon: 'user',
     routes: [
       { name: '个人中心', path: '/account/center', component: './Account/Center' },
