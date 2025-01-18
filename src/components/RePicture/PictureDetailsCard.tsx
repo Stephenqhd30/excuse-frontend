@@ -1,6 +1,6 @@
 import { Tag } from 'antd';
 import { TAG_EMPTY } from '@/constants';
-import {ProCard, ProDescriptions, ProDescriptionsActionType} from '@ant-design/pro-components';
+import { ProCard, ProDescriptions, ProDescriptionsActionType } from '@ant-design/pro-components';
 import React, { useRef } from 'react';
 
 interface Props {

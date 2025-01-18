@@ -9,7 +9,7 @@ import { message, UploadProps } from 'antd';
 import React, { useState } from 'react';
 import { FileUploadBiz } from '@/enums/FileUploadBizEnum';
 import {
-  addPictureUsingPost,
+  updatePictureUsingPost,
   uploadPictureUsingPost,
 } from '@/services/excuse-backend/pictureController';
 
@@ -24,10 +24,10 @@ interface Props {
  *
  * @param fields
  */
-const handleAdd = async (fields: API.PictureAddRequest) => {
+const handleAdd = async (fields: API.PictureUpdateRequest) => {
   const hide = message.loading('正在添加');
   try {
-    const res = await addPictureUsingPost({
+    const res = await updatePictureUsingPost({
       ...fields,
     });
     if (res.code === 0 && res.data) {
@@ -100,15 +100,10 @@ const CreatePictureModal: React.FC<Props> = (props) => {
       title={'新建图片'}
       open={visible}
       form={form}
-      onFinish={async (values: API.PictureAddRequest) => {
+      onFinish={async (values: API.PictureUpdateRequest) => {
         const success = await handleAdd({
           ...values,
-          picFormat: pictureInfo?.picFormat,
-          picHeight: pictureInfo?.picHeight,
-          picScale: pictureInfo?.picScale,
-          picSize: pictureInfo?.picSize,
-          picWidth: pictureInfo?.picWidth,
-          url: pictureInfo?.url,
+          id: pictureInfo?.id,
         });
         if (success) {
           onSubmit?.(values);
@@ -129,7 +124,7 @@ const CreatePictureModal: React.FC<Props> = (props) => {
     >
       <ProFormUploadDragger
         title={'上传图片'}
-        label={'头像'}
+        label={'图片'}
         max={1}
         fieldProps={{
           ...uploadProps,

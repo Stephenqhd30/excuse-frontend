@@ -6,7 +6,7 @@ import {
   ProFormUploadDragger,
 } from '@ant-design/pro-components';
 import { message, UploadProps } from 'antd';
-import React, { useState } from 'react';
+import React from 'react';
 import { FileUploadBiz } from '@/enums/FileUploadBizEnum';
 import {
   updatePictureUsingPost,
@@ -52,7 +52,6 @@ const handleUpdate = async (fields: API.PictureUpdateRequest) => {
 const UpdatePictureModal: React.FC<Props> = (props) => {
   const { oldData, visible, onSubmit, onCancel } = props;
   // 图片信息
-  const [pictureInfo, setPictureInfo] = useState<any>({});
   const [form] = ProForm.useForm<API.PictureUpdateRequest>();
   /**
    * 上传图片
@@ -67,6 +66,7 @@ const UpdatePictureModal: React.FC<Props> = (props) => {
         const res = await uploadPictureUsingPost(
           {
             biz: FileUploadBiz.PICTURE,
+            id: oldData?.id,
           },
           {
             file: file,
@@ -75,7 +75,6 @@ const UpdatePictureModal: React.FC<Props> = (props) => {
         );
         if (res.code === 0 && res.data) {
           onSuccess(res.data);
-          setPictureInfo(res.data);
         } else {
           onError(res);
           message.error(`文件上传失败${res.message}`);
@@ -86,7 +85,6 @@ const UpdatePictureModal: React.FC<Props> = (props) => {
       }
     },
     onRemove() {
-      setPictureInfo(undefined);
     },
   };
 
@@ -104,12 +102,6 @@ const UpdatePictureModal: React.FC<Props> = (props) => {
         const success = await handleUpdate({
           ...values,
           id: oldData?.id,
-          url: pictureInfo?.url || oldData?.url,
-          picFormat: pictureInfo?.picFormat || oldData?.picFormat,
-          picHeight: pictureInfo?.picHeight || oldData?.picHeight,
-          picScale: pictureInfo?.picScale || oldData?.picScale,
-          picSize: pictureInfo?.picSize || oldData?.picSize,
-          picWidth: pictureInfo?.picWidth || oldData?.picWidth,
         });
         if (success) {
           onSubmit?.(values);
@@ -131,7 +123,7 @@ const UpdatePictureModal: React.FC<Props> = (props) => {
     >
       <ProFormUploadDragger
         title={'上传图片'}
-        label={'头像'}
+        label={'图片'}
         max={1}
         fieldProps={{
           ...uploadProps,
