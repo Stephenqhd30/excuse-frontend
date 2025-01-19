@@ -5,6 +5,12 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseInt_ = {
+    code?: number;
+    data?: number;
+    message?: string;
+  };
+
   type BaseResponseListTagDTO_ = {
     code?: number;
     data?: TagDTO[];
@@ -41,6 +47,18 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponsePageSpace_ = {
+    code?: number;
+    data?: PageSpace_;
+    message?: string;
+  };
+
+  type BaseResponsePageSpaceVO_ = {
+    code?: number;
+    data?: PageSpaceVO_;
+    message?: string;
+  };
+
   type BaseResponsePageTag_ = {
     code?: number;
     data?: PageTag_;
@@ -68,6 +86,12 @@ declare namespace API {
   type BaseResponsePictureVO_ = {
     code?: number;
     data?: PictureVO;
+    message?: string;
+  };
+
+  type BaseResponseSpaceVO_ = {
+    code?: number;
+    data?: SpaceVO;
     message?: string;
   };
 
@@ -111,6 +135,11 @@ declare namespace API {
   };
 
   type getPictureVOByIdUsingGETParams = {
+    /** id */
+    id?: number;
+  };
+
+  type getSpaceVOByIdUsingGETParams = {
     /** id */
     id?: number;
   };
@@ -171,6 +200,32 @@ declare namespace API {
     orders?: OrderItem[];
     pages?: number;
     records?: PictureVO[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PageSpace_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: Space[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PageSpaceVO_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: SpaceVO[];
     searchCount?: boolean;
     size?: number;
     total?: number;
@@ -245,6 +300,7 @@ declare namespace API {
     reviewStatus?: number;
     reviewTime?: string;
     reviewerId?: number;
+    spaceId?: number;
     tags?: string;
     updateTime?: string;
     url?: string;
@@ -323,6 +379,18 @@ declare namespace API {
     url?: string;
   };
 
+  type PictureUploadByBatchRequest = {
+    count?: number;
+    searchText?: string;
+  };
+
+  type PictureUploadRequest = {
+    biz?: string;
+    fileUrl?: string;
+    id?: number;
+    spaceId?: number;
+  };
+
   type PictureVO = {
     category?: string;
     createTime?: string;
@@ -335,10 +403,72 @@ declare namespace API {
     picScale?: number;
     picSize?: number;
     picWidth?: number;
+    spaceId?: number;
     tagList?: string[];
     tags?: string;
     updateTime?: string;
     url?: string;
+    userId?: number;
+    userVO?: UserVO;
+  };
+
+  type Space = {
+    createTime?: string;
+    editTime?: string;
+    id?: number;
+    isDelete?: number;
+    maxCount?: number;
+    maxSize?: number;
+    spaceLevel?: number;
+    spaceName?: string;
+    totalCount?: number;
+    totalSize?: number;
+    updateTime?: string;
+    userId?: number;
+  };
+
+  type SpaceAddRequest = {
+    spaceLevel?: number;
+    spaceName?: string;
+  };
+
+  type SpaceEditRequest = {
+    id?: number;
+    spaceName?: string;
+  };
+
+  type SpaceQueryRequest = {
+    current?: number;
+    id?: number;
+    notId?: number;
+    pageSize?: number;
+    searchText?: string;
+    sortField?: string;
+    sortOrder?: string;
+    spaceLevel?: number;
+    spaceName?: string;
+    userId?: number;
+  };
+
+  type SpaceUpdateRequest = {
+    id?: number;
+    maxCount?: number;
+    maxSize?: number;
+    spaceLevel?: number;
+    spaceName?: string;
+  };
+
+  type SpaceVO = {
+    createTime?: string;
+    editTime?: string;
+    id?: number;
+    maxCount?: number;
+    maxSize?: number;
+    spaceLevel?: number;
+    spaceName?: string;
+    totalCount?: number;
+    totalSize?: number;
+    updateTime?: string;
     userId?: number;
     userVO?: UserVO;
   };
@@ -414,7 +544,9 @@ declare namespace API {
 
   type uploadPictureUsingPOSTParams = {
     biz?: string;
+    fileUrl?: string;
     id?: number;
+    spaceId?: number;
   };
 
   type User = {

@@ -6,6 +6,7 @@ import * as wxMpController from './wxMpController';
 import * as excelController from './excelController';
 import * as fileController from './fileController';
 import * as pictureController from './pictureController';
+import * as spaceController from './spaceController';
 import * as tagController from './tagController';
 import * as userController from './userController';
 export default {
@@ -13,6 +14,7 @@ export default {
   excelController,
   fileController,
   pictureController,
+  spaceController,
   tagController,
   userController,
 };
