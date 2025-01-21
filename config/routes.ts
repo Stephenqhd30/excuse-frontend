@@ -12,6 +12,7 @@ export default [
       { name: '用户管理', path: '/admin/user', component: './Admin/UserList' },
       { name: '标签管理', path: '/admin/tag', component: './Admin/TagList' },
       { name: '图片管理', path: '/admin/picture', component: './Admin/PictureList' },
+      { name: '空间管理', path: '/admin/space', component: './Admin/SpaceList' },
     ],
   },
   {
