@@ -7,11 +7,11 @@ import {
 } from '@ant-design/pro-components';
 import { message, UploadProps } from 'antd';
 import React from 'react';
-import { FileUploadBiz } from '@/enums/FileUploadBizEnum';
 import {
   updatePictureUsingPost,
   uploadPictureUsingPost,
 } from '@/services/excuse-backend/pictureController';
+import { FILE_UPLOAD_BIZ } from '@/constants/FileUploadBizEnum';
 
 interface Props {
   oldData?: API.Picture;
@@ -65,7 +65,7 @@ const UpdatePictureModal: React.FC<Props> = (props) => {
       try {
         const res = await uploadPictureUsingPost(
           {
-            biz: FileUploadBiz.PICTURE,
+            biz: FILE_UPLOAD_BIZ.PICTURE,
             id: oldData?.id,
           },
           {

@@ -10,7 +10,7 @@ import {
 import { AntDesignOutlined } from '@ant-design/icons';
 import { updateMyUserUsingPost } from '@/services/excuse-backend/userController';
 import { uploadFileUsingPost } from '@/services/excuse-backend/fileController';
-import { FileUploadBiz } from '@/enums/FileUploadBizEnum';
+import { FILE_UPLOAD_BIZ } from '@/constants/FileUploadBizEnum';
 
 interface BaseViewProps {
   user: API.UserVO;
@@ -63,7 +63,7 @@ const BaseView: React.FC<BaseViewProps> = (props) => {
       try {
         const res = await uploadFileUsingPost(
           {
-            biz: FileUploadBiz.USER_AVATAR,
+            biz: FILE_UPLOAD_BIZ.USER_AVATAR,
           },
           {
             file: file,

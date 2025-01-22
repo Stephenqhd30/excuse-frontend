@@ -7,11 +7,11 @@ import {
 } from '@ant-design/pro-components';
 import { message, UploadProps } from 'antd';
 import React, { useState } from 'react';
-import { FileUploadBiz } from '@/enums/FileUploadBizEnum';
 import {
   updatePictureUsingPost,
   uploadPictureUsingPost,
 } from '@/services/excuse-backend/pictureController';
+import {FILE_UPLOAD_BIZ} from '@/constants/FileUploadBizEnum';
 
 interface Props {
   onCancel: () => void;
@@ -69,7 +69,7 @@ const CreatePictureModal: React.FC<Props> = (props) => {
       try {
         const res = await uploadPictureUsingPost(
           {
-            biz: FileUploadBiz.PICTURE,
+            biz: FILE_UPLOAD_BIZ.PICTURE,
           },
           {
             file: file,

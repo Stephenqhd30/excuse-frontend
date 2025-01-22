@@ -2,10 +2,10 @@ import React, { useRef, useState } from 'react';
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
 import { Button, Select, Space, Tag, Typography } from 'antd';
 import { listPictureByPageUsingPost } from '@/services/excuse-backend/pictureController';
-import { ReviewStatus, reviewStatusEnum } from '@/enums/ReviewStatusEnum';
 import { BatchReviewModal, ReviewModal } from '@/pages/Review/Picture/components';
 import { TAG_EMPTY } from '@/constants';
 import { PictureModal } from '@/components';
+import { REVIEW_STATUS_ENUM, REVIEW_STATUS_MAP } from '@/constants/ReviewStatusEnum';
 
 /**
  * 图片审核页面
@@ -78,18 +78,18 @@ const PictureReviewPage: React.FC = () => {
       title: '审核状态',
       dataIndex: 'reviewStatus',
       valueType: 'select',
-      valueEnum: reviewStatusEnum,
+      valueEnum: REVIEW_STATUS_MAP,
       renderFormItem: () => {
         return (
           <Select>
-            <Select.Option value={ReviewStatus.REVIEWING}>
-              {reviewStatusEnum[ReviewStatus.REVIEWING].text}
+            <Select.Option value={REVIEW_STATUS_ENUM.REVIEWING}>
+              {REVIEW_STATUS_MAP[REVIEW_STATUS_ENUM.REVIEWING].text}
             </Select.Option>
-            <Select.Option value={ReviewStatus.PASS}>
-              {reviewStatusEnum[ReviewStatus.PASS].text}
+            <Select.Option value={REVIEW_STATUS_ENUM.PASS}>
+              {REVIEW_STATUS_MAP[REVIEW_STATUS_ENUM.PASS].text}
             </Select.Option>
-            <Select.Option value={ReviewStatus.REJECT}>
-              {reviewStatusEnum[ReviewStatus.REJECT].text}
+            <Select.Option value={REVIEW_STATUS_ENUM.REJECT}>
+              {REVIEW_STATUS_MAP[REVIEW_STATUS_ENUM.REJECT].text}
             </Select.Option>
           </Select>
         );
@@ -152,7 +152,7 @@ const PictureReviewPage: React.FC = () => {
             ...filter,
             sortField,
             sortOrder,
-            notId: ReviewStatus.PASS
+            notId: REVIEW_STATUS_ENUM.PASS,
           } as API.PictureQueryRequest);
 
           return {

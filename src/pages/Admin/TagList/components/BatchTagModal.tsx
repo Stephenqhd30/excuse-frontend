@@ -2,7 +2,7 @@ import { message } from 'antd';
 import { ModalForm, ProForm, ProFormRadio, ProFormText } from '@ant-design/pro-components';
 import React from 'react';
 import { updateTagByBatchUsingPost } from '@/services/excuse-backend/tagController';
-import { tagStatus, TagStatusEnum } from '@/enums/TagStatusEnum';
+import { tagStatus, TAG_STATUS_ENUM } from '@/constants/TagStatusEnum';
 
 interface Props {
   visible: boolean;
@@ -60,12 +60,12 @@ const BatchTagModal: React.FC<Props> = (props) => {
       <ProFormRadio.Group
         options={[
           {
-            label: tagStatus[TagStatusEnum.IS_PARENT].text,
-            value: TagStatusEnum.IS_PARENT,
+            label: tagStatus[TAG_STATUS_ENUM.IS_PARENT].text,
+            value: TAG_STATUS_ENUM.IS_PARENT,
           },
           {
-            label: tagStatus[TagStatusEnum.NOT_IS_PARENT].text,
-            value: TagStatusEnum.NOT_IS_PARENT,
+            label: tagStatus[TAG_STATUS_ENUM.NOT_IS_PARENT].text,
+            value: TAG_STATUS_ENUM.NOT_IS_PARENT,
           },
         ]}
         label={'是否为父标签'}

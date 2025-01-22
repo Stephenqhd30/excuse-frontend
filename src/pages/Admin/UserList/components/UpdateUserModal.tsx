@@ -10,8 +10,8 @@ import { message, Select, UploadProps } from 'antd';
 import React, { useState } from 'react';
 import { uploadFileUsingPost } from '@/services/excuse-backend/fileController';
 import { updateUserUsingPost } from '@/services/excuse-backend/userController';
-import { userRole, UserRoleEnum } from '@/enums/UserRoleEnum';
-import { FileUploadBiz } from '@/enums/FileUploadBizEnum';
+import { FILE_UPLOAD_BIZ } from '@/constants/FileUploadBizEnum';
+import { USER_ROLE_ENUM, USER_ROLE_MAP } from '@/constants/UserRoleEnum';
 
 interface Props {
   oldData?: API.User;
@@ -66,7 +66,7 @@ const UpdateUserModal: React.FC<Props> = (props) => {
       try {
         const res = await uploadFileUsingPost(
           {
-            biz: FileUploadBiz.USER_AVATAR,
+            biz: FILE_UPLOAD_BIZ.USER_AVATAR,
           },
           {
             file: file,
@@ -138,13 +138,17 @@ const UpdateUserModal: React.FC<Props> = (props) => {
         }}
         name="pic"
       />
-      <ProFormSelect name={'userRole'} label={'权限'} valueEnum={userRole}>
+      <ProFormSelect name={'userRole'} label={'权限'} valueEnum={USER_ROLE_ENUM}>
         <Select>
-          <Select.Option value={UserRoleEnum.ADMIN}>
-            {userRole[UserRoleEnum.ADMIN].text}
+          <Select.Option value={USER_ROLE_ENUM.ADMIN}>
+            {USER_ROLE_MAP[USER_ROLE_ENUM.ADMIN].text}
           </Select.Option>
-          <Select.Option value={UserRoleEnum.USER}>{userRole[UserRoleEnum.USER].text}</Select.Option>
-          <Select.Option value={UserRoleEnum.BAN}>{userRole[UserRoleEnum.BAN].text}</Select.Option>
+          <Select.Option value={USER_ROLE_ENUM.USER}>
+            {USER_ROLE_MAP[USER_ROLE_ENUM.USER].text}
+          </Select.Option>
+          <Select.Option value={USER_ROLE_ENUM.BAN}>
+            {USER_ROLE_MAP[USER_ROLE_ENUM.BAN].text}
+          </Select.Option>
         </Select>
       </ProFormSelect>
     </ModalForm>

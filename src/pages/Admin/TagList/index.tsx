@@ -13,7 +13,7 @@ import {
   UpdateTagModal,
   UploadTagModal,
 } from '@/pages/Admin/TagList/components';
-import { tagStatus, TagStatusEnum } from '@/enums/TagStatusEnum';
+import { tagStatus, TAG_STATUS_ENUM } from '@/constants/TagStatusEnum';
 import { downloadTagUsingGet } from '@/services/excuse-backend/excelController';
 
 /**
@@ -116,11 +116,11 @@ const TagList: React.FC = () => {
       renderFormItem: () => {
         return (
           <Select>
-            <Select.Option value={TagStatusEnum.IS_PARENT}>
-              {tagStatus[TagStatusEnum.IS_PARENT].text}
+            <Select.Option value={TAG_STATUS_ENUM.IS_PARENT}>
+              {tagStatus[TAG_STATUS_ENUM.IS_PARENT].text}
             </Select.Option>
-            <Select.Option value={TagStatusEnum.NOT_IS_PARENT}>
-              {tagStatus[TagStatusEnum.NOT_IS_PARENT].text}
+            <Select.Option value={TAG_STATUS_ENUM.NOT_IS_PARENT}>
+              {tagStatus[TAG_STATUS_ENUM.NOT_IS_PARENT].text}
             </Select.Option>
           </Select>
         );

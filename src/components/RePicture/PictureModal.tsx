@@ -5,6 +5,7 @@ import { PictureDetailsCard } from '@/components';
 const { useBreakpoint } = Grid;
 
 interface Props {
+  visible: boolean;
   picture: API.PictureVO;
   onCancel: () => void;
   onSubmit: () => void;
@@ -14,12 +15,12 @@ interface Props {
  * @constructor
  */
 const PictureModal: React.FC<Props> = (props) => {
-  const { picture, onCancel, onSubmit } = props;
+  const { visible, picture, onCancel, onSubmit } = props;
   const scene = useBreakpoint();
   const isMobile = !scene.md;
 
   return (
-    <Modal onOk={() => onSubmit?.()} onCancel={() => onCancel?.()}>
+    <Modal open={visible} onOk={() => onSubmit?.()} onCancel={() => onCancel?.()}>
       <Row gutter={[16, 16]}>
         <Col span={isMobile ? 24 : 12}>
           <Image src={picture?.url} />

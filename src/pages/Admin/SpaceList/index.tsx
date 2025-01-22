@@ -1,12 +1,13 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { ActionType, ProColumns, ProTable } from '@ant-design/pro-components';
-import { Button, message, Popconfirm, Space, Typography } from 'antd';
+import { Button, message, Popconfirm, Select, Space, Tag, Typography } from 'antd';
 import React, { useRef, useState } from 'react';
 import {
   deleteSpaceUsingPost,
   listSpaceByPageUsingPost,
 } from '@/services/excuse-backend/spaceController';
 import { CreateSpaceModal, UpdateSpaceModal } from '@/pages/Admin/SpaceList/components';
+import { SPACE_LEVEL_ENUM, SPACE_LEVEL_MAP } from '@/constants/SpaceLevelEnum';
 
 /**
  * 删除节点
@@ -61,23 +62,38 @@ const SpaceList: React.FC = () => {
       dataIndex: 'spaceName',
       valueType: 'text',
     },
-
     {
       title: '空间等级',
       dataIndex: 'spaceLevel',
-      valueType: 'text',
+      valueEnum: SPACE_LEVEL_MAP,
+      render: (_, record) => {
+        return <Tag>{SPACE_LEVEL_MAP[record?.spaceLevel as any].text}</Tag>;
+      },
+      renderFormItem: () => {
+        return (
+          <Select>
+            <Select.Option value={SPACE_LEVEL_ENUM.COMMON}>
+              {SPACE_LEVEL_MAP[SPACE_LEVEL_ENUM.COMMON].text}
+            </Select.Option>
+            <Select.Option value={SPACE_LEVEL_ENUM.PROFESSIONAL}>
+              {SPACE_LEVEL_MAP[SPACE_LEVEL_ENUM.PROFESSIONAL].text}
+            </Select.Option>
+            <Select.Option value={SPACE_LEVEL_ENUM.FLAGSHIP}>
+              {SPACE_LEVEL_MAP[SPACE_LEVEL_ENUM.FLAGSHIP].text}
+            </Select.Option>
+          </Select>
+        );
+      },
     },
     {
       title: '总数',
       dataIndex: 'totalCount',
       valueType: 'text',
-      hideInForm: true,
     },
     {
       title: '总大小',
       dataIndex: 'totalSize',
       valueType: 'text',
-      hideInForm: true,
     },
     {
       title: '总数',
@@ -89,19 +105,16 @@ const SpaceList: React.FC = () => {
       title: '最大数',
       dataIndex: 'maxCount',
       valueType: 'text',
-      hideInForm: true,
     },
     {
       title: '最大大小',
       dataIndex: 'maxSize',
       valueType: 'text',
-      hideInForm: true,
     },
     {
       title: '创建人id',
       dataIndex: 'userId',
       valueType: 'text',
-      hideInForm: true,
     },
     {
       title: '创建时间',
@@ -211,7 +224,6 @@ const SpaceList: React.FC = () => {
             actionRef.current?.reload();
           }}
           visible={createModalVisible}
-          columns={columns}
         />
       )}
       {/*更新表单的Modal框*/}
@@ -226,7 +238,6 @@ const SpaceList: React.FC = () => {
             actionRef.current?.reload();
           }}
           visible={updateModalVisible}
-          columns={columns}
           oldData={currentRow}
         />
       )}

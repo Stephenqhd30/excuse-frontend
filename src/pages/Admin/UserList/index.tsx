@@ -6,7 +6,7 @@ import {
   deleteUserUsingPost,
   listUserByPageUsingPost,
 } from '@/services/excuse-backend/userController';
-import { userRole, UserRoleEnum } from '@/enums/UserRoleEnum';
+import { USER_ROLE_ENUM, USER_ROLE_MAP } from '@/constants/UserRoleEnum';
 import {
   CreateUserModal,
   UpdateUserModal,
@@ -124,9 +124,9 @@ const UserList: React.FC = () => {
     {
       title: '权限',
       dataIndex: 'userRole',
-      valueEnum: userRole,
+      valueEnum: USER_ROLE_MAP,
       render: (_, record) => {
-        const role = userRole[record.userRole as UserRoleEnum];
+        const role = USER_ROLE_MAP[record.userRole as USER_ROLE_ENUM];
         return <Tag color={role.color}>{role.text}</Tag>;
       },
     },
