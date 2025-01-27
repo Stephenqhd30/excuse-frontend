@@ -3,6 +3,13 @@ export default [
   { path: '/welcome', name: '主页', icon: 'smile', component: './Welcome' },
   { path: '/picture/:id', name: '图片详细', component: './Picture', hideInMenu: true },
   {
+    path: '/search',
+    name: '搜索页',
+    icon: 'search',
+    component: './Search',
+    hideInMenu: true,
+  },
+  {
     path: '/admin',
     name: '管理页',
     icon: 'crown',

@@ -1,26 +1,24 @@
-import { ActionType, ProList } from '@ant-design/pro-components';
+import { ActionType, PageContainer, ProList } from '@ant-design/pro-components';
 import React, { useEffect, useRef, useState } from 'react';
-import { listPictureVoByPageUsingPost } from '@/services/excuse-backend/pictureController';
-import { PictureCard } from '@/components';
 import { history, useLocation } from '@umijs/max';
 import Search from 'antd/es/input/Search';
-
+import { listPictureVoByPageUsingPost } from '@/services/excuse-backend/pictureController';
+import {PictureCard} from '@/components';
 
 /**
- * 主页
- *
+ * 搜索结果页
  * @constructor
  */
-const Welcome: React.FC = () => {
+const SearchPage: React.FC = () => {
   const actionRef = useRef<ActionType>();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
-  // 搜索参数状态
   const [searchParams, setSearchParams] = useState<API.PictureQueryRequest>({
     searchText: params.get('searchText') || '',
     current: 1,
     pageSize: 10,
   });
+
   // 通用更新搜索参数的函数，同时同步到 URL
   const handleSearchParamsChange = (newParams: Partial<API.PictureQueryRequest>) => {
     // 更新状态
@@ -48,12 +46,12 @@ const Welcome: React.FC = () => {
   }, [location.search || undefined]);
 
   return (
-    <>
+    <PageContainer breadcrumb={undefined} title={false}>
       <div
         style={{
           margin: '0 auto',
           width: '800px',
-          minWidth: '256px'
+          minWidth: '256px',
         }}
       >
         <Search
@@ -66,13 +64,17 @@ const Welcome: React.FC = () => {
         />
       </div>
       <ProList
+        onChange={() => {
+          actionRef.current?.reload();
+        }}
         pagination={{
-          defaultPageSize: 8,
-          showSizeChanger: false,
+          pageSize: 10,
           responsive: true,
           current: searchParams.current,
           onChange: (page) => setSearchParams((prev) => ({ ...prev, current: page })),
         }}
+        actionRef={actionRef}
+        itemLayout="vertical"
         rowKey={'id'}
         grid={{
           xs: 1,
@@ -80,16 +82,17 @@ const Welcome: React.FC = () => {
           md: 2,
           lg: 2,
           xl: 3,
-          xxl: 4,
+          xxl: 3,
         }}
         request={async (params, sort, filter) => {
           const sortField = 'updateTime';
-          const sortOrder = 'descend';
+          const sortOrder = sort?.[sortField] ?? 'descend';
           const { data, code } = await listPictureVoByPageUsingPost({
             ...params,
             ...filter,
             sortField,
             sortOrder,
+            ...searchParams,
           } as API.PictureQueryRequest);
 
           return {
@@ -100,8 +103,8 @@ const Welcome: React.FC = () => {
         }}
         renderItem={(item) => <PictureCard key={item.id} picture={item} />}
       />
-    </>
+    </PageContainer>
   );
 };
 
-export default Welcome;
+export default SearchPage;
