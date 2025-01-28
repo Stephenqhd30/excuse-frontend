@@ -67,7 +67,6 @@ const CreateSpaceModal: React.FC<CreateProps> = (props) => {
       submitter={{
         searchConfig: {
           submitText: '新建空间',
-          resetText: '',
         },
       }}
     >

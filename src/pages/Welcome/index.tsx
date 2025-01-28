@@ -67,8 +67,7 @@ const Welcome: React.FC = () => {
       </div>
       <ProList
         pagination={{
-          defaultPageSize: 8,
-          showSizeChanger: false,
+          defaultPageSize: 12,
           responsive: true,
           current: searchParams.current,
           onChange: (page) => setSearchParams((prev) => ({ ...prev, current: page })),

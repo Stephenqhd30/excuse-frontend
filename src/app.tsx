@@ -5,8 +5,6 @@ import Settings from '../config/defaultSettings';
 import { getLoginUserUsingGet } from '@/services/excuse-backend/userController';
 import { UnAccessiblePage } from '@/pages/Exception';
 import { requestConfig } from '@/requestConfig';
-import { GitlabFilled } from '@ant-design/icons';
-import { STEPHEN_GITLAB } from '@/constants';
 
 const loginPath = '/user/login';
 
@@ -36,6 +34,9 @@ export async function getInitialState(): Promise<InitialState> {
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 // @ts-ignore
 export const layout: RunTimeLayoutConfig = ({ initialState }) => {
+  const { location } = history;
+  // 判断当前页面路径是否为账号中心页面
+  const isAccountPage = location.pathname.startsWith('/account');
   return {
     avatarProps: {
       src: initialState?.currentUser?.userAvatar,
@@ -44,40 +45,13 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
         return <AvatarDropdown>{avatarChildren}</AvatarDropdown>;
       },
     },
-    actionsRender: (props) => {
-      if (props.isMobile) return [];
-      return [
-        <GitlabFilled target={'_blank'} src={STEPHEN_GITLAB} key="GitlabFille" />,
-      ];
-    },
     footerRender: () => <Footer />,
     onPageChange: () => {
-      const { location } = history;
       // 如果没有登录，重定向到 login
       if (!initialState?.currentUser && location.pathname !== loginPath) {
         history.push(loginPath);
       }
     },
-    bgLayoutImgList: [
-      {
-        src: 'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/D2LWSqNny4sAAAAAAAAAAAAAFl94AQBr',
-        left: 85,
-        bottom: 100,
-        height: '303px',
-      },
-      {
-        src: 'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/C2TWRpJpiC0AAAAAAAAAAAAAFl94AQBr',
-        bottom: -68,
-        right: -45,
-        height: '303px',
-      },
-      {
-        src: 'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/F6vSTbj8KpYAAAAAAAAAAAAAFl94AQBr',
-        bottom: 0,
-        left: 0,
-        width: '331px',
-      },
-    ],
     menuHeaderRender: undefined,
     // 自定义 403 页面
     unAccessible: <UnAccessiblePage />,
