@@ -9,11 +9,12 @@ const Settings: ProLayoutProps & {
 } = {
   navTheme: 'light',
   colorPrimary: '#1890ff',
-  layout: 'top',
+  layout: 'mix',
   contentWidth: 'Fixed',
   fixedHeader: true,
   fixSiderbar: true,
-  splitMenus: false,
+  splitMenus: true,
+
   title: '借口',
   pwa: true,
   logo: 'https://butterfly-1318299170.cos.ap-shanghai.myqcloud.com/logo/excuse/logo.svg',

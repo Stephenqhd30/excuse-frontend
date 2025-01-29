@@ -16,10 +16,20 @@ export default [
     access: 'canAdmin',
     routes: [
       { path: '/admin', redirect: '/admin/user' },
-      { name: '用户管理', path: '/admin/user', component: './Admin/UserList' },
-      { name: '标签管理', path: '/admin/tag', component: './Admin/TagList' },
-      { name: '图片管理', path: '/admin/picture', component: './Admin/PictureList' },
-      { name: '空间管理', path: '/admin/space', component: './Admin/SpaceList' },
+      { name: '用户管理', icon: 'user', path: '/admin/user', component: './Admin/UserList' },
+      { name: '标签管理', icon: 'tag', path: '/admin/tag', component: './Admin/TagList' },
+      {
+        name: '图片管理',
+        icon: 'picture',
+        path: '/admin/picture',
+        component: './Admin/PictureList',
+      },
+      {
+        name: '空间管理',
+        icon: 'PicCenterOutlined',
+        path: '/admin/space',
+        component: './Admin/SpaceList',
+      },
     ],
   },
   {
@@ -29,7 +39,7 @@ export default [
     access: 'canAdmin',
     routes: [
       { path: '/review', redirect: '/review/picture' },
-      { name: '图片审核', path: '/review/picture', component: './Review/Picture' },
+      { name: '图片审核', icon: 'picture', path: '/review/picture', component: './Review/Picture' },
     ],
   },
   {
@@ -37,8 +47,21 @@ export default [
     name: '个人中心',
     icon: 'user',
     routes: [
-      { name: '个人中心', path: '/account/center', component: './Account/Center' },
-      { name: '个人设置', path: '/account/settings', component: './Account/Settings' },
+      { path: '/account', redirect: '/account/center' },
+      { name: '个人中心', icon: 'user', path: '/account/center', component: './Account/Center' },
+      {
+        name: '个人设置',
+        icon: 'setting',
+        path: '/account/settings',
+        component: './Account/Settings',
+      },
+      {
+        name: '个人空间',
+        icon: 'PicCenterOutlined',
+        path: '/account/space',
+        component: './Account/Space',
+      },
+      { name: '团队空间', icon: 'team', path: '/account/team', component: './Account/TeamSpace' },
     ],
   },
   {
