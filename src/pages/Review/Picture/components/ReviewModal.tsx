@@ -2,7 +2,7 @@ import { message, Select } from 'antd';
 import { ModalForm, ProForm, ProFormSelect, ProFormTextArea } from '@ant-design/pro-components';
 import React from 'react';
 import { doPictureReviewUsingPost } from '@/services/excuse-backend/pictureController';
-import {REVIEW_STATUS_ENUM, REVIEW_STATUS_MAP} from '@/constants/ReviewStatusEnum';
+import { REVIEW_STATUS_ENUM, REVIEW_STATUS_MAP } from '@/constants/ReviewStatusEnum';
 
 interface ReviewModalProps {
   visible: boolean;
@@ -56,17 +56,24 @@ const ReviewModal: React.FC<ReviewModalProps> = (props) => {
         },
       }}
     >
-      <ProFormSelect name={'reviewStatus'} label={'审核状态'}>
-        <Select.Option value={REVIEW_STATUS_ENUM.REVIEWING}>
-          {REVIEW_STATUS_MAP[REVIEW_STATUS_ENUM.REVIEWING].text}
-        </Select.Option>
-        <Select.Option value={REVIEW_STATUS_ENUM.PASS}>
-          {REVIEW_STATUS_MAP[REVIEW_STATUS_ENUM.PASS].text}
-        </Select.Option>
-        <Select.Option value={REVIEW_STATUS_ENUM.REJECT}>
-          {REVIEW_STATUS_MAP[REVIEW_STATUS_ENUM.REJECT].text}
-        </Select.Option>
-      </ProFormSelect>
+      <ProFormSelect
+        name={'reviewStatus'}
+        label={'审核状态'}
+        options={[
+          {
+            label: REVIEW_STATUS_MAP[REVIEW_STATUS_ENUM.REVIEWING].text,
+            value: REVIEW_STATUS_ENUM.REVIEWING,
+          },
+          {
+            label: REVIEW_STATUS_MAP[REVIEW_STATUS_ENUM.PASS].text,
+            value: REVIEW_STATUS_ENUM.PASS,
+          },
+          {
+            label: REVIEW_STATUS_MAP[REVIEW_STATUS_ENUM.REJECT].text,
+            value: REVIEW_STATUS_ENUM.REJECT,
+          },
+        ]}
+      />
       <ProFormTextArea name={'reviewMessage'} label={'审核信息'} />
     </ModalForm>
   );

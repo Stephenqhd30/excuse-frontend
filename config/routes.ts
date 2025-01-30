@@ -10,6 +10,16 @@ export default [
     hideInMenu: true,
   },
   {
+    path: '/create',
+    name: '创建页',
+    icon: 'AppstoreAddOutlined',
+    component: './Create/Picture',
+    routes: [
+      { path: '/create', redirect: '/create/picture' },
+      { name: '创建图片', icon: 'FolderAddOutlined', path: '/create/picture', component: './Create/Picture' },
+    ],
+  },
+  {
     path: '/admin',
     name: '管理页',
     icon: 'crown',
