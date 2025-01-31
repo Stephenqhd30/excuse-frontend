@@ -13,10 +13,21 @@ export default [
     path: '/create',
     name: '创建页',
     icon: 'AppstoreAddOutlined',
-    component: './Create/Picture',
     routes: [
       { path: '/create', redirect: '/create/picture' },
-      { name: '创建图片', icon: 'FolderAddOutlined', path: '/create/picture', component: './Create/Picture' },
+      {
+        name: '创建图片',
+        icon: 'FolderAddOutlined',
+        path: '/create/picture',
+        component: './Create/Picture',
+      },
+      {
+        name: '爬取图片',
+        icon: 'FileAddOutlined',
+        access: 'canAdmin',
+        path: '/create/crawler/picture',
+        component: './Create/Crawler',
+      },
     ],
   },
   {
