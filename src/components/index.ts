@@ -7,7 +7,7 @@ import Footer from './Footer';
 import { AvatarDropdown, AvatarName } from './RightContent/AvatarDropdown';
 import { UserCard } from '@/components/ReUser';
 import { TagTreeSelect } from '@/components/ReTag';
-import { PictureCard, PictureDetailsCard, PictureModal } from '@/components/RePicture';
+import { PictureCard, PictureDetailsCard, PictureModal, PicturePreviewCard } from '@/components/RePicture';
 
 export {
   Footer,
@@ -18,4 +18,5 @@ export {
   PictureCard,
   PictureDetailsCard,
   PictureModal,
+  PicturePreviewCard
 };

@@ -15,7 +15,7 @@ const PictureDetailsCard: React.FC<Props> = (props) => {
   const actionRef = useRef<ProDescriptionsActionType>();
 
   return (
-    <ProCard bordered={false}>
+    <ProCard title={"图片信息"} headerBordered bordered={false}>
       <ProDescriptions<API.PictureVO>
         column={1}
         actionRef={actionRef}

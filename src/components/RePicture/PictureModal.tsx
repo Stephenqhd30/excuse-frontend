@@ -1,6 +1,6 @@
 import React from 'react';
-import { Col, Grid, Image, Modal, Row } from 'antd';
-import { PictureDetailsCard } from '@/components';
+import { Col, Grid, Modal, Row } from 'antd';
+import { PictureDetailsCard, PicturePreviewCard } from '@/components';
 
 const { useBreakpoint } = Grid;
 
@@ -23,7 +23,7 @@ const PictureModal: React.FC<Props> = (props) => {
     <Modal open={visible} onOk={() => onSubmit?.()} onCancel={() => onCancel?.()}>
       <Row gutter={[16, 16]}>
         <Col span={isMobile ? 24 : 12}>
-          <Image src={picture?.url} />
+          <PicturePreviewCard picture={picture} />
         </Col>
         <Col span={isMobile ? 24 : 12}>
           <PictureDetailsCard picture={picture} />

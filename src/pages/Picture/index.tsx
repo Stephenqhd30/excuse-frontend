@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Col, Grid, Image, message, Row } from 'antd';
-import { PageContainer, ProCard } from '@ant-design/pro-components';
+import {Button, Col, Grid, message, Row, Space} from 'antd';
+import { PageContainer } from '@ant-design/pro-components';
 import { useModel, useParams } from '@umijs/max';
 import {
   deletePictureUsingPost,
   getPictureVoByIdUsingGet,
 } from '@/services/excuse-backend/pictureController';
-import { PictureDetailsCard } from '@/components';
+import { PictureDetailsCard, PicturePreviewCard } from '@/components';
 
 const { useBreakpoint } = Grid;
 
@@ -75,24 +75,25 @@ const PicturePage: React.FC = () => {
 
   return (
     <PageContainer title={false}>
-      <ProCard>
-        <Row gutter={16}>
-          <Col span={isMobile ? 24 : 12}>
-            <Image
-              preview={false}
-              style={{
-                width: '100%',
-                height: isMobile ? 'auto' : '100%',
-                objectFit: 'cover',
-              }}
-              src={picture?.url}
-            />
-          </Col>
-          <Col span={isMobile ? 24 : 12}>
-            <PictureDetailsCard picture={picture} />
-          </Col>
-        </Row>
-      </ProCard>
+      <Row gutter={[16, 16]}>
+        <Col span={isMobile ? 24 : 12}>
+          <PicturePreviewCard picture={picture} />
+        </Col>
+        <Col span={isMobile ? 24 : 12}>
+          <Row gutter={[16, 16]}>
+            <Col>
+              <PictureDetailsCard picture={picture} />
+            </Col>
+            {isOwner && (
+              <Col>
+                <Space>
+                  <Button>删除</Button>
+                </Space>
+              </Col>
+            )}
+          </Row>
+        </Col>
+      </Row>
     </PageContainer>
   );
 };
