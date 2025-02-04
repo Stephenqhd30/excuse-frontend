@@ -50,8 +50,7 @@ const SearchPage: React.FC = () => {
       <div
         style={{
           margin: '0 auto',
-          width: '800px',
-          minWidth: '256px',
+          maxWidth: '800px',
         }}
       >
         <Search
