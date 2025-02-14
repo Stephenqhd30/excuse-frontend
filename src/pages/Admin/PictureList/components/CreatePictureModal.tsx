@@ -11,7 +11,7 @@ import {
   updatePictureUsingPost,
   uploadPictureUsingPost,
 } from '@/services/excuse-backend/pictureController';
-import {FILE_UPLOAD_BIZ} from '@/constants/FileUploadBizEnum';
+import { FILE_UPLOAD_BIZ } from '@/constants/FileUploadBizEnum';
 
 interface Props {
   onCancel: () => void;

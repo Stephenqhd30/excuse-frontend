@@ -52,15 +52,15 @@ const Welcome: React.FC = () => {
       <div
         style={{
           margin: '0 auto',
-          maxWidth: '800px'
+          maxWidth: '800px',
         }}
       >
         <Search
           size={'large'}
           defaultValue={searchParams.searchText}
-          style={{ marginBottom: 16 }}
+          style={{marginBottom: 16}}
           placeholder="请输入关键词"
-          onSearch={(searchText) => handleSearchParamsChange({ searchText, current: 1 })}
+          onSearch={(searchText) => handleSearchParamsChange({searchText, current: 1})}
           enterButton
         />
       </div>
@@ -69,7 +69,7 @@ const Welcome: React.FC = () => {
           defaultPageSize: 12,
           responsive: true,
           current: searchParams.current,
-          onChange: (page) => setSearchParams((prev) => ({ ...prev, current: page })),
+          onChange: (page) => setSearchParams((prev) => ({...prev, current: page})),
         }}
         rowKey={'id'}
         grid={{
@@ -83,7 +83,7 @@ const Welcome: React.FC = () => {
         request={async (params, sort, filter) => {
           const sortField = 'updateTime';
           const sortOrder = 'descend';
-          const { data, code } = await listPictureVoByPageUsingPost({
+          const {data, code} = await listPictureVoByPageUsingPost({
             ...params,
             ...filter,
             sortField,
@@ -96,7 +96,7 @@ const Welcome: React.FC = () => {
             total: data?.total || 0,
           };
         }}
-        renderItem={(item) => <PictureCard key={item.id} picture={item} />}
+        renderItem={(item) => <PictureCard key={item.id} picture={item}/>}
       />
     </>
   );
