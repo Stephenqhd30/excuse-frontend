@@ -11,6 +11,12 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseListSpaceLevel_ = {
+    code?: number;
+    data?: SpaceLevel[];
+    message?: string;
+  };
+
   type BaseResponseListTagDTO_ = {
     code?: number;
     data?: TagDTO[];
@@ -435,6 +441,13 @@ declare namespace API {
   type SpaceEditRequest = {
     id?: number;
     spaceName?: string;
+  };
+
+  type SpaceLevel = {
+    maxCount?: number;
+    maxSize?: number;
+    text?: string;
+    value?: number;
   };
 
   type SpaceQueryRequest = {
